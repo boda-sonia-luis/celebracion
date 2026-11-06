@@ -10,6 +10,7 @@ const ACTIVE_SECTION_MARGIN = '-45% 0px -50% 0px';
 const SUBMIT_SENDING_TEXT = 'Enviando…';
 const MENU_LABEL_OPEN = 'Abrir menú';
 const MENU_LABEL_CLOSE = 'Cerrar menú';
+const FORM_VALIDATED_CLASS = 'was-validated';
 const MISSING_FIELDS_MESSAGE = 'Por favor, completa todos los campos obligatorios.';
 const SEND_ERROR_MESSAGE =
     'No hemos podido enviar tu respuesta. Por favor, inténtalo de nuevo en unos minutos.';
@@ -165,6 +166,7 @@ function submitRsvp(form, fields) {
     const data = readRsvpData(fields);
 
     if (!isRsvpComplete(data, fields)) {
+        markInvalidFields(form);
         showToast(MISSING_FIELDS_MESSAGE);
         return;
     }
@@ -177,6 +179,14 @@ function submitRsvp(form, fields) {
             showToast(SEND_ERROR_MESSAGE);
         })
         .finally(function() { setSubmitting(fields.submitButton, false); });
+}
+
+function markInvalidFields(form) {
+    form.classList.add(FORM_VALIDATED_CLASS);
+    const firstInvalid = form.querySelector(':invalid');
+    if (firstInvalid) {
+        firstInvalid.focus();
+    }
 }
 
 function setSubmitting(button, isSubmitting) {
@@ -206,6 +216,7 @@ function sendRsvp(data) {
 function handleRsvpSuccess(form, fields, data) {
     showToast('¡Gracias, ' + data.nombre + '! Hemos recibido tu respuesta.');
     form.reset();
+    form.classList.remove(FORM_VALIDATED_CLASS);
     updateCompanionFields(fields);
     updateCharCounter(fields);
     saveRsvpLocally(data);
