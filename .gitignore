@@ -1,0 +1,8 @@
+# Solo se publica lo necesario para GitHub Pages; todo lo demás queda fuera.
+/*
+!/.gitignore
+!/index.html
+!/styles.css
+!/script.js
+!/favicon.svg
+!/assets/
