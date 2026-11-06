@@ -7,6 +7,7 @@
     --text: #33384a;
     --text-muted: #5d6273;
     --line: #d8dbe5;
+    --error: #b3464a;
 
     --font-serif: 'EB Garamond', Georgia, serif;
     --font-display: 'Cormorant Garamond', Georgia, serif;
@@ -857,6 +858,11 @@ a {
 
 .form-group textarea {
     resize: vertical;
+}
+
+.was-validated .form-group :invalid {
+    border-color: var(--error);
+    box-shadow: 0 0 0 3px rgb(179 70 74 / 0.12);
 }
 
 .char-counter {
