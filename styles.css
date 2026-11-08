@@ -787,6 +787,10 @@ a {
     line-height: 1.55;
 }
 
+.rule p + p {
+    margin-top: 0.6rem;
+}
+
 /* Confirmación */
 
 .rsvp {
