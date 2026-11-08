@@ -1057,6 +1057,10 @@ a {
 /* Móvil */
 
 @media (max-width: 600px) {
+    html {
+        font-size: 112.5%;
+    }
+
     .button {
         padding-inline: 1.2rem;
         letter-spacing: 0.1em;
